@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import "./Upload.css"
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import t1 from "../images/t1.jpg"
 import t2 from "../images/t2.jpg"
@@ -17,10 +17,19 @@ import { getRandomOptions } from "../data/bigHead";
 const Upload = () => {
     const [init, setInit] = useState([0, 0, 0, 0, 0, 0]);
     const hiddenFileInput = React.useRef(null);
-
+    const [file, setFile] = useState(null)
     const handleClick = event => {
         hiddenFileInput.current.click();
     };
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (file !== null) {
+            navigate("/load", { state: { data: file } });
+        }
+    }, [file])
+
 
     return (
         <>
@@ -30,6 +39,7 @@ const Upload = () => {
                 ref={hiddenFileInput}
                 accept="image/png, image/jpg, image/jpeg"
                 style={{ display: 'none' }}
+                onChange={() => { setFile(hiddenFileInput.current.files[0]) }}
             />
 
             <div className='type-container container'>
@@ -149,11 +159,11 @@ const Upload = () => {
                     </div>
                 </div>
 
-                <Link to="/signup" className="btn btn-primary btn-submit">
+                <div onClick={()=>{  navigate("/details", { state: { data: init } });}} className="btn btn-primary btn-submit">
                     <span className="span">Process Waste</span>
 
                     <p className='num'><ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon></p>
-                </Link>
+                </div>
             </div>
 
             <section className="cta upload-container">
