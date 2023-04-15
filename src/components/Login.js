@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import cta_img from "../images/login.avif"
+import cta_img from "../images/signin.jpeg"
 import { Link } from 'react-router-dom'
 
 const Login = () => {
