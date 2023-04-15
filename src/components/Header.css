@@ -1,0 +1,89 @@
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+.header-action {
+    display: none;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--yellow-green);
+    padding-block: 25px;
+    z-index: 4;
+}
+
+.header.active {
+    position: fixed;
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.header .container {
+    padding:0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .container .logo img {
+    height: 45px;
+    width: 45px;
+}
+
+.nav-toggle-btn {
+    font-size: 3rem;
+}
+
+.nav-toggle-btn.active #open,
+.nav-toggle-btn #close {
+    display: block !important;
+}
+
+.nav-toggle-btn #open,
+.nav-toggle-btn.active #close {
+    display: none !important; 
+}
+
+.navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: 0.25s var(--cubic-out);
+}
+
+.navbar.active {
+    visibility: visible;
+    height: 224px;
+    transition-duration: 0.5s;
+}
+
+.navbar-item {
+    border-block-end: 1px solid var(--oxford-blue_a15);
+}
+
+.navbar-link {
+    color: var(--black);
+    font-family: var(--ff-quicksand);
+    font-size: var(--fs-10);
+    font-weight: var(--fw-700);
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
