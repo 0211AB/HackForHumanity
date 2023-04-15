@@ -108,7 +108,7 @@ const Upload = () => {
                         <div className='inc'>
                             <p onClick={() => {
                                 const oldInit = [...init];
-                                oldInit[2] += 1;
+                                oldInit[3] += 1;
                                 setInit(oldInit);
                             }}><ion-icon name="add-circle" x></ion-icon></p>
                             <p className='num'>{init[3]}</p>

@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Loader.css"
 import img from "../images/about_2.jpg"
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Loader = () => {
-    const location=useLocation()
-    const file=location.state.data
+    const location = useLocation()
+    const file = location.state.data
+    const navigate = useNavigate()
 
-    console.log(file)
+    useEffect(() => {
+        const sendData = async () => {
+
+            const data = new FormData();
+            data.set('file', file)
+            const res = await fetch("http://127.0.0.1:5000/predict", {
+                method: "POST",
+                body: data,
+            });
+
+            const res_data = await res.json();
+            console.log(res_data);
+            navigate("/details", { state: { data: res_data } })
+
+        };
+
+        sendData();
+
+    }, [])
+
     return (
         <div className='loading-container'>
             <h1 className="h2 hero-title">"Creating A Sustainable Future Takes Time - Hang In There !"</h1>
